@@ -54,6 +54,7 @@ public class UserController {
         UserInfoVO userInfoVO = UserInfoVO.builder()
                 .userId(123456L)
                 .userName("张三")
+                .lastLogin(new Date())
                 .build();
         if (!token.equals("aa")) {
             throw new RuntimeException("完蛋了呀！！");

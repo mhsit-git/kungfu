@@ -1,0 +1,6 @@
+"C:\Program Files\Java\jdk-14.0.1\bin\java.exe" -Dvisualvm.id=456590723123000 -Dmaven.multiModuleProjectDirectory=F:\meihua\kungfu "-Dmaven.home=D:\Program Files\apache-maven-3.5.4" "-Dclassworlds.conf=D:\Program Files\apache-maven-3.5.4\bin\m2.conf" "-Dmaven.ext.class.path=C:\Program Files\JetBrains\ideaIU-2019.3.4.win\plugins\maven\lib\maven-event-listener.jar" "-javaagent:C:\Program Files\JetBrains\ideaIU-2019.3.4.win\lib\idea_rt.jar=51928:C:\Program Files\JetBrains\ideaIU-2019.3.4.win\bin" -Dfile.encoding=UTF-8 -classpath "D:\Program Files\apache-maven-3.5.4\boot\plexus-classworlds-2.5.2.jar" org.codehaus.classworlds.Launcher -Didea.version2020.1.1 -s "D:\Program Files\apache-maven-3.5.4\conf\settings.xml" -Dmaven.repo.local=E:\maven_repository -Dmaven.test.skip=true clean package
+docker build -t my/kungfu .
+docker stop kungfu
+docker rm kungfu
+docker run --name kungfu -p 8088:8088 --network test-net --add-host redis.docker:172.18.0.2 --add-host mysql.docker:172
+.18.0.3 -h "app1.docker" -itd my/kungfu

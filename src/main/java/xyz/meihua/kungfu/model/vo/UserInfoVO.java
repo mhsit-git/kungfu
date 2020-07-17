@@ -3,6 +3,8 @@ package xyz.meihua.kungfu.model.vo;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author meihua
  * @date 2020/05/11
@@ -12,4 +14,5 @@ import lombok.Data;
 public class UserInfoVO {
     private Long userId;
     private String userName;
+    private Date lastLogin;
 }
