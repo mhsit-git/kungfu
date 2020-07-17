@@ -16,19 +16,27 @@ public class JdkTest {
     }
 
     public int sw(String s) {
+
         return switch (s) {
             case "1" -> 1;
             case "2" -> 2;
+            default -> {
+                yield s.length();
+            }
+//            default -> s.length();
 //            default -> {
+//                s = "abc";
 //                yield s.length();
 //            }
-            default -> s.length();
         };
     }
 
     public void sw2(String s) {
         switch (s) {
-            case "1" -> System.out.println("123");
+            case "1" -> {
+                System.out.println("123");
+                System.out.println("123");
+            }
             case "2" -> System.out.println("245");
             default -> System.out.println(s);
         }

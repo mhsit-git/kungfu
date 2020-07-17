@@ -1,5 +1,6 @@
 package xyz.meihua.kungfu.web;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ public class TestController {
         this.redisTemplate = redisTemplate;
     }
 
+    @ApiOperation("test1")
     @GetMapping("/test1")
     WebResult<String> test1() {
         redisTemplate.opsForValue().set("abc","123",5, TimeUnit.SECONDS);

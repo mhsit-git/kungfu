@@ -1,5 +1,6 @@
 package xyz.meihua.kungfu.web;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class UserController {
     public UserController(AuthManager authManager) {
         this.authManager = authManager;
     }
-
+    @ApiOperation("登录")
     @PostMapping("/login")
     WebResult<LoginInfoVO> login(@RequestBody LoginRequest request) {
         String token = UUID.randomUUID().toString();
@@ -40,19 +41,23 @@ public class UserController {
                 .userId(123456L)
                 .build();
 
-        this.authManager.login(token,loginInfoVO);
+        this.authManager.login(token, loginInfoVO);
         return WebResult.successData(loginInfoVO);
     }
 
+    @ApiOperation("用户")
     @Login
     @GetMapping("/user")
-    WebResult<UserInfoVO> login(@RequestParam("token")String token) {
+    WebResult<UserInfoVO> login(@RequestParam(value = "token",required = false) String token) {
         LoginInfoVO loginInfoVO = authManager.get(token);
-        log.info("{}",loginInfoVO );
+        log.info("{}", loginInfoVO);
         UserInfoVO userInfoVO = UserInfoVO.builder()
                 .userId(123456L)
                 .userName("张三")
                 .build();
+        if (!token.equals("aa")) {
+            throw new RuntimeException("完蛋了呀！！");
+        }
         return WebResult.successData(userInfoVO);
     }
 
